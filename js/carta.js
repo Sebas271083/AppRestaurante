@@ -106,7 +106,18 @@ function agregarPlato () {
     console.log('desde boton')
     platos.push({id:Math.round(Math.random()*100) , imagen:imagenNuevoPlato.value, nombre:nombreNuevoPlato.value, precio:parseInt(precioNuevoPlato.value),    categoria:categorioNuevoPlato.value});
     console.log(platos)
-    mensajeError('Guardado Correctamente')
+    const swa = ()=> {
+        Swal.fire
+        ({
+          title: `Guardado Correctamente`,
+          text: `El plato ${nombreNuevoPlato.value} se guardo correctamente`,
+          icon: 'success',
+          button: "Ok!",
+          toast: true,
+          timer: 1500,
+        })
+      }
+      swa()
 
     document.querySelector('.form').reset()
 
@@ -164,17 +175,22 @@ function mostrarPlatos() {
     categoriaDiv.textContent = categorias[categoria];
 
     const btnEditar = document.createElement('button');
-    btnEditar.classList.add('col-md-1','btn', 'btn-success', 'btn-sm', 'me-3','mt-2');
+    btnEditar.classList.add('col-md-1','btn', 'btn-success', 'btn-sm', 'me-3','mt-2', 'disabled');
     btnEditar.innerHTML = 'Editar'
     btnEditar.setAttribute("data-bs-target", "#formulario")
     btnEditar.setAttribute("data-bs-toggle", "modal")
     btnEditar.onclick = () => editarPlato(plato);
+    if(usuarioActualizado) {
+        btnEditar.classList.remove('disabled')
+    } 
     
     
     const btnEliminar = document.createElement('button');
-    btnEliminar.classList.add('col-md-1', 'btn', 'btn-sm', 'btn-danger', 'mt-2');
+    btnEliminar.classList.add('col-md-1', 'btn', 'btn-sm', 'btn-danger', 'mt-2', 'disabled');
     btnEliminar.onclick = () => eliminarPlato(plato.id);
-
+    if(usuarioActualizado) {
+        btnEliminar.classList.remove('disabled')
+    }
 
     
     btnEliminar.innerHTML = 'Eliminar'
@@ -281,16 +297,52 @@ function mensajeError(mensaje, tipo) {
 }
 
 function eliminarPlato(id) {
-    platos = platos.filter(plato => plato.id !== id)
-    // console.log(`el plato a eliminar es _ ${platoEliminado[0].nombre}`)
-    localStorage.setItem("platosStorage", JSON.stringify(platos))
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Estas seguro que deseas eliminar este plato?',
+        text: "No lo podras revertir!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, Borrar Plato!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Plato Borrado de la Carta!',
+            '',
+            'success'
+            )
+            platos = platos.filter(plato => plato.id !== id)
+            // console.log(`el plato a eliminar es _ ${platoEliminado[0].nombre}`)
+            localStorage.setItem("platosStorage", JSON.stringify(platos))
+        
+            let guardado = localStorage.getItem("platosStorage")
+        
+            console.log(`guardado: ${guardado}`)
+            
+            limpiarHTML()
+            mostrarPlatos()
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'El plato no se ha borrado :)',
+            'error'
+          )
+        }
+      })
 
-    let guardado = localStorage.getItem("platosStorage")
 
-    console.log(`guardado: ${guardado}`)
-    
-    limpiarHTML()
-    mostrarPlatos()
 }
 
 console.log(usuarioActualizado)
@@ -299,3 +351,9 @@ console.log(usuarioActualizado)
 if(usuarioActualizado) {
     btnAgregarPlato.classList.remove('disabled')
 } 
+
+
+
+ 
+
+

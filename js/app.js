@@ -64,12 +64,36 @@ btnCerrarSesion.addEventListener('click', cerrar)
 
 console.log(usuario)
 
+const swa = ()=> {
+  Swal.fire
+  ({
+    title: `Bienvenido! ${emailSesion.value}`,
+    text: 'Has iniciado sesión correctamente',
+    icon: 'success',
+    button: "Ok!",
+    // showClass: {
+    //   popup: 'animate__animated animate__fadeInDown'
+    // },
+    showClass: {
+      popup: 'animate__animated animate__flip'
+    },
+    
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    },
+    
+    toast: true,
+    timer: 3000,
+  })
+}
+
   function iniciar () {
     if(passSesion.value === '123') {
       usuario = true
       habilitarOrden.style.visibility = 'visible'
       // habilitarOrden.classList.remove('disabled')
       localStorage.setItem('usuarioActualizado', usuario)
+      swa()
     }  
     document.querySelector('.form').reset()
   }
