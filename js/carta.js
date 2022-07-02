@@ -296,54 +296,6 @@ function mensajeError(mensaje, tipo) {
     }, 5000);
 }
 
-function eliminarPlato(id) {
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-      })
-      
-      swalWithBootstrapButtons.fire({
-        title: '¿Estas seguro que deseas eliminar este plato?',
-        text: "No lo podras revertir!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, Borrar Plato!',
-        cancelButtonText: 'No, cancelar!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            'Plato Borrado de la Carta!',
-            '',
-            'success'
-            )
-            platos = platos.filter(plato => plato.id !== id)
-            // console.log(`el plato a eliminar es _ ${platoEliminado[0].nombre}`)
-            localStorage.setItem("platosStorage", JSON.stringify(platos))
-        
-            let guardado = localStorage.getItem("platosStorage")
-        
-            console.log(`guardado: ${guardado}`)
-            
-            limpiarHTML()
-            mostrarPlatos()
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Cancelado',
-            'El plato no se ha borrado :)',
-            'error'
-          )
-        }
-      })
-
-
-}
 
 console.log(usuarioActualizado)
 
