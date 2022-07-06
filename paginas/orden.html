@@ -65,7 +65,7 @@
     <section id="resumen" class="resumen bg-light container mt-5 p-4 d-none">
         <h2 class="text-center my-4">Resumen De Consumo </h2>
 
-        <div class="contenido row">
+        <div id="contenido" class="contenido row ">
             <p class="text-center">Añade los elementos del pedido</p>
         </div>
     </section>
@@ -97,7 +97,26 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center mt-3">
+          <button data-bs-toggle="modal" data-bs-target="#pago" type="button" class="calcular  btn btn-success mb-3">Generar Pago</button>
+        </div>
 
+
+        <!-- Modal -->
+        <div class="modal fade mt-4" id="pago">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header contenedor-modal-pago">
+                      <h2 class="modal-title mt-3">Total A Pagar</h2>
+                          <div class="mb-3 contenido-pago">
+                          </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary cerrar-pago" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+              </div>
+          </div>
+  
 
 </body>
 </html>

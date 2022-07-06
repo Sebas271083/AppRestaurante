@@ -14,10 +14,12 @@ console.log(usuarioActualizado)
 
 
 let cliente = {
-    mesa: '',
-    hora: '',
-    pedido: []
-};
+  mesa: '',
+  hora: '',
+  pedido: [{nombre:"",
+            precio:"",
+            cantidad: parseInt(0)}]
+}
 
 const categorias = {
     1:'Comida',
