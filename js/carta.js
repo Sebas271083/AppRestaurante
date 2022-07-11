@@ -18,6 +18,12 @@ btnCerrar.addEventListener('click', cerrar)
 let editando;
 
 
+if(usuarioActualizado) {
+    btnAgregarPlato.classList.remove('disabled')
+} 
+
+localStorage.setItem("platosStorage", JSON.stringify(platos))
+
 // const habilitarOrden = document.querySelector('.orden')
 
 // const usuario = true;
@@ -104,7 +110,7 @@ function agregarPlato () {
        return mensajeError('Todos los campos son obligatorios', 'error')
     }
     console.log('desde boton')
-    platos.push({id:Math.round(Math.random()*100) , imagen:imagenNuevoPlato.value, nombre:nombreNuevoPlato.value, precio:parseInt(precioNuevoPlato.value),    categoria:categorioNuevoPlato.value});
+    platos.push({id:Math.round(Math.random()*100) , imagen:imagenNuevoPlato.value, nombre:nombreNuevoPlato.value, precio:parseInt(precioNuevoPlato.value), categoria:categorioNuevoPlato.value});
     console.log(platos)
     const swa = ()=> {
         Swal.fire
@@ -121,7 +127,6 @@ function agregarPlato () {
 
     document.querySelector('.form').reset()
 
-  
     localStorage.setItem("platosStorage", JSON.stringify(platos))
     let guardado = localStorage.getItem("platosStorage")
 
@@ -142,13 +147,15 @@ function agregarPlato () {
     mostrarPlatos(platos)
 
 }
-
+if(platos)
 platos = JSON.parse(localStorage.getItem("platosStorage"))
 
 
 function mostrarPlatos() {
+    console.log(platos)
 
     platos.sort(((a, b) => a.categoria - b.categoria))
+
     limpiarHTML()
     
     platos.forEach(plato => {
@@ -300,9 +307,7 @@ function mensajeError(mensaje, tipo) {
 console.log(usuarioActualizado)
 
 
-if(usuarioActualizado) {
-    btnAgregarPlato.classList.remove('disabled')
-} 
+
 
 
 
