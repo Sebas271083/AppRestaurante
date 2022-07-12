@@ -15,6 +15,7 @@ btnCerrarPago.addEventListener('click', limpiarHTMLPago)
 
 let pedido = [];
 let subtotal = []
+
 platos = JSON.parse(localStorage.getItem("platosStorage"))
 let total = 0
 let pedidoActualizado = []
@@ -26,6 +27,10 @@ btnGuardarCliente.addEventListener('click', guardarCliente)
 
 function guardarCliente ( ) {
 
+    if(localStorage.getItem("platosStorage") === null){
+        alert('Comprobar que haya platos cargados en la Carta')
+        return
+    }
 
     console.log(mesa.value)
 
@@ -182,8 +187,8 @@ function calcularTotal() {
         row.classList.add('row', 'py-3', 'border-top')
 
         const precioDivTotal = document.createElement('DIV');
-        precioDivTotal.classList.add('col-md-4', 'fw-bold', 'text-center', 'mt-3');
-        precioDivTotal.textContent = `$ ${total}`;
+        precioDivTotal.classList.add('col-md-4', 'fw-bold', 'text-center', 'm-3', 'text-danger', 'fs-4');
+        precioDivTotal.textContent = `$${total}`;
  
         row.appendChild(precioDivTotal);
         contenidoPago.appendChild(row);

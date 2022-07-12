@@ -33,6 +33,8 @@ function obtenerDatos() {
 
 function utilizarJson(platos) {
 
+localStorage.setItem("platosStorage", JSON.stringify(platos))
+
 console.log(platos)
 
 btnGuardarPlato.addEventListener('click', agregarPlato)
