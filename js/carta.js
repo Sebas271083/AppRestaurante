@@ -81,9 +81,13 @@ function agregarPlato () {
         console.log(`el plato editado es : ${platoEditado.nombre}`)
         console.log(platos)
 
+        localStorage.setItem("platosStorage", JSON.stringify(platos))
+
         limpiarHTML()
         mostrarPlatos()
         mensajeError('Editado correctamente')
+
+        console.log(editando)
 
         editando = false
         
@@ -143,6 +147,7 @@ function agregarPlato () {
 
 
 function mostrarPlatos() {
+    console.log(platos)
     if (localStorage.getItem("platosStorage") !== null ) {
         platos = JSON.parse(localStorage.getItem("platosStorage"))
     }
@@ -294,7 +299,7 @@ function mensajeError(mensaje, tipo) {
 
     setTimeout( () => {
         divMensaje.remove();
-    }, 5000);
+    }, 1000);
 }
 
 
