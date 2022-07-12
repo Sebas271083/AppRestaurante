@@ -12,8 +12,10 @@ const btnAgregarPlato = document.querySelector('#agregar')
 const btnGuardarPlato = document.querySelector('#guardar-plato')
 const btnCerrar = document.querySelector('#cerrar')
 
-btnGuardarPlato.addEventListener('click', agregarPlato)
-btnCerrar.addEventListener('click', cerrar)
+
+
+console.log(platos)
+
 
 let editando;
 
@@ -22,43 +24,24 @@ if(usuarioActualizado) {
     btnAgregarPlato.classList.remove('disabled')
 } 
 
-localStorage.setItem("platosStorage", JSON.stringify(platos))
+function obtenerDatos() {
+    const url = 'http://localhost:4000/platos'
+        fetch(url)
+            .then(respuesta => respuesta.json())
+            .then(platos => utilizarJson(platos))
+}
 
-// const habilitarOrden = document.querySelector('.orden')
+function utilizarJson(platos) {
 
-// const usuario = true;
+console.log(platos)
 
-// if( usuario === false ) {
-//     habilitarOrden.classList.add('disabled')
-// }
+btnGuardarPlato.addEventListener('click', agregarPlato)
+btnCerrar.addEventListener('click', cerrar)
 
-// const categorias = {
-//     1:'Comida',
-//     2:'Bebidas',
-//     3:'Postres'
-// }
 
-// let platos =[{
-//     "id": 1,
-//     "imagen":"https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2021/03/30/6063031b90a87.r_d.1083-871-0.jpeg",
-//     "nombre": "Pizza Chica",
-//     "precio": 30,
-//     "categoria": 1,
-//     "cantidad": 3
-//   },
-//   {
-//     "id": 2,
-//     "imagen":"https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2021/03/30/6063031b90a87.r_d.1083-871-0.jpeg",
-//     "nombre": "Pizza Mediana",
-//     "precio": 50,
-//     "categoria": 1,
-//     "cantidad": 1
-//   }]
 
-//   console.log(platos)
-  
-  const nuevosplatos = platos.filter(plato => plato.id !== 2)
-  console.log(platos)
+const nuevosplatos = platos.filter(plato => plato.id !== 2)
+console.log(platos)
 
 const {id, imagen, nombre, precio, categoria, cantidad} = platos
 
@@ -69,7 +52,7 @@ console.log(usuarioActualizado)
 
 
 // localStorage.setItem("platosStorage", JSON.stringify(platos))
-let guardado = localStorage.getItem("platosStorage")
+// let guardado = localStorage.getItem("platosStorage")
 
 function agregarPlato () {
     // console.log(platos[0].id)
@@ -110,7 +93,7 @@ function agregarPlato () {
        return mensajeError('Todos los campos son obligatorios', 'error')
     }
     console.log('desde boton')
-    platos.push({id:Math.round(Math.random()*100) , imagen:imagenNuevoPlato.value, nombre:nombreNuevoPlato.value, precio:parseInt(precioNuevoPlato.value), categoria:categorioNuevoPlato.value});
+    platos.push({id:Math.round(Math.random()*100) , imagen:imagenNuevoPlato.value, nombre:nombreNuevoPlato.value, precio:parseInt(precioNuevoPlato.value),    categoria:categorioNuevoPlato.value});
     console.log(platos)
     const swa = ()=> {
         Swal.fire
@@ -127,6 +110,7 @@ function agregarPlato () {
 
     document.querySelector('.form').reset()
 
+  
     localStorage.setItem("platosStorage", JSON.stringify(platos))
     let guardado = localStorage.getItem("platosStorage")
 
@@ -146,16 +130,21 @@ function agregarPlato () {
     
     mostrarPlatos(platos)
 
+
 }
-if(platos)
-platos = JSON.parse(localStorage.getItem("platosStorage"))
+
+if (localStorage.getItem("platosStorage") !== null ) {
+    platos = JSON.parse(localStorage.getItem("platosStorage"))
+}
+
+
 
 
 function mostrarPlatos() {
     console.log(platos)
-
+    if( platos !== null ) {
     platos.sort(((a, b) => a.categoria - b.categoria))
-
+    }
     limpiarHTML()
     
     platos.forEach(plato => {
@@ -307,10 +296,59 @@ function mensajeError(mensaje, tipo) {
 console.log(usuarioActualizado)
 
 
+function eliminarPlato(id) {
+    console.log(id)
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success m-3' ,
+          cancelButton: 'btn btn-danger m-3'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Estas seguro que deseas eliminar este plato?',
+        text: "No lo podras revertir!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, Borrar Plato!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Plato Borrado de la Carta!',
+            '',
+            'success'
+            )
+            platos = platos.filter(plato => plato.id !== id)
+            // console.log(`el plato a eliminar es _ ${platoEliminado[0].nombre}`)
+            localStorage.setItem("platosStorage", JSON.stringify(platos))
+        
+            let guardado = localStorage.getItem("platosStorage")
+        
+            console.log(`guardado: ${guardado}`)
+            
+            limpiarHTML()
+            mostrarPlatos()
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'El plato no se ha borrado :)',
+            'error'
+          )
+        }
+      })
+}
+
+
+}
 
 
 
 
- 
 
-
+obtenerDatos()

@@ -27,26 +27,36 @@ const categorias = {
     3:'Postres'
 }
 
-let platos =[{
-    "id": 1,
-    "imagen":"https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2021/03/30/6063031b90a87.r_d.1083-871-0.jpeg",
-    "nombre": "Pizza Chica",
-    "precio": 30,
-    "categoria": 1,
-    "cantidad": 3
-  },
-  {
-    "id": 2,
-    "imagen":"https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2021/03/30/6063031b90a87.r_d.1083-871-0.jpeg",
-    "nombre": "Pizza Mediana",
-    "precio": 50,
-    "categoria": 1,
-    "cantidad": 1
-  }]
+let resultado;
 
-  platos.forEach(plato => {
-      console.log(plato)
-  });
+
+
+
+
+
+// let platos =[{
+//     "id": 1,
+//     "imagen":"https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2021/03/30/6063031b90a87.r_d.1083-871-0.jpeg",
+//     "nombre": "Pizza Chica",
+//     "precio": 30,
+//     "categoria": 1,
+//     "cantidad": 3
+//   },
+//   {
+//     "id": 2,
+//     "imagen":"https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2021/03/30/6063031b90a87.r_d.1083-871-0.jpeg",
+//     "nombre": "Pizza Mediana",
+//     "precio": 50,
+//     "categoria": 1,
+//     "cantidad": 1
+//   }]
+
+
+//     console.log(platos)
+
+//   platos.forEach(plato => {
+//       console.log(plato)
+//   });
 
 
   function guardarCliente(){
@@ -113,49 +123,4 @@ const swa = ()=> {
   } 
 
 
-  function eliminarPlato(id) {
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-      })
-      
-      swalWithBootstrapButtons.fire({
-        title: '¿Estas seguro que deseas eliminar este plato?',
-        text: "No lo podras revertir!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, Borrar Plato!',
-        cancelButtonText: 'No, cancelar!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            'Plato Borrado de la Carta!',
-            '',
-            'success'
-            )
-            platos = platos.filter(plato => plato.id !== id)
-            // console.log(`el plato a eliminar es _ ${platoEliminado[0].nombre}`)
-            localStorage.setItem("platosStorage", JSON.stringify(platos))
-        
-            let guardado = localStorage.getItem("platosStorage")
-        
-            console.log(`guardado: ${guardado}`)
-            
-            limpiarHTML()
-            mostrarPlatos()
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Cancelado',
-            'El plato no se ha borrado :)',
-            'error'
-          )
-        }
-      })
-}
+  
