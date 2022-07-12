@@ -97,7 +97,7 @@ function guardarCliente ( ) {
 
         const btnCantidad = document.createElement('button');
         btnCantidad.classList.add('col-md-1','btn', 'btn-success', 'btn-sm', 'me-3','mt-2');
-        btnCantidad.innerHTML = 'Agregar'
+        btnCantidad.innerHTML = 'Agregar +'
         // btnCantidad.onclick = agregarPedido()
         // inputCantidad.value = 0;
         // inputCantidad.type = 'number';
@@ -291,7 +291,7 @@ function cuentaresumen () {
  
         const btnDisminuir = document.createElement('button');
         btnDisminuir.classList.add('col-md-1','btn', 'btn-danger', 'btn-sm', 'me-3','mt-2', id);
-        btnDisminuir.innerHTML = 'Eliminar'
+        btnDisminuir.innerHTML = 'Eliminar -'
         btnDisminuir.onclick = () => eliminarPedido(platoPedido)
         
         

@@ -33,7 +33,6 @@ function obtenerDatos() {
 
 function utilizarJson(platos) {
 
-localStorage.setItem("platosStorage", JSON.stringify(platos))
 
 console.log(platos)
 
@@ -130,19 +129,23 @@ function agregarPlato () {
     console.log(`Esto es platos: ${platos}`)
     console.log(platos)
     
+    if (localStorage.getItem("platosStorage") !== null ) {
+    platos = JSON.parse(localStorage.getItem("platosStorage"))
+    
     mostrarPlatos(platos)
 
 
 }
 
-if (localStorage.getItem("platosStorage") !== null ) {
-    platos = JSON.parse(localStorage.getItem("platosStorage"))
 }
 
 
 
 
 function mostrarPlatos() {
+    if (localStorage.getItem("platosStorage") !== null ) {
+        platos = JSON.parse(localStorage.getItem("platosStorage"))
+    }
     console.log(platos)
     if( platos !== null ) {
     platos.sort(((a, b) => a.categoria - b.categoria))
