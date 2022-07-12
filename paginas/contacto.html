@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/aa6dac5e14.js" crossorigin="anonymous"></script>
+
     <title>Contacto</title>
 </head>
 <body>
@@ -60,13 +62,13 @@
                       <div class="row">
                         <div class="grid_4">
                           <label class="name">
-                            <input type="text" name="Name" placeholder="Nombre:" data-constraints="@Required @JustLetters"/>
+                            <input id="nombreContacto" type="text" name="Name" placeholder="Nombre:" data-constraints="@Required @JustLetters"/>
                             <span class="empty-message">*Esta informacion es requerida.</span>
                           </label>
                         </div>
                         <div class="grid_4">
                           <label class="email">
-                            <input type="text" name="email" placeholder="E-mail:" value=""
+                            <input id="emailContacto" type="text" name="email" placeholder="E-mail:" value=""
                                    data-constraints="@Required @Email"/>
                             <span class="empty-message">*Esta informacion es requerida.</span>
                             <span class="error-message">*This is not a valid email.</span>
@@ -74,7 +76,7 @@
                         </div>
                         <div class="grid_4">
                           <label class="phone">
-                            <input type="text" name="phone" placeholder="Telefono" value=""
+                            <input id="telefonoContacto" type="text" name="phone" placeholder="Telefono" value=""
                                    data-constraints="@Required @JustNumbers"/>
                             <span class="empty-message">*Esta informacion es requerida.</span>
                             <span class="error-message">*This is not a valid phone.</span>
@@ -84,7 +86,7 @@
                       <div class="row">
                         <div class="grid_12">
                           <label class="message">
-                            <textarea name="message" placeholder="Mensaje:"
+                            <textarea id="mensajeContacto" name="message" placeholder="Mensaje:"
                                       data-constraints='@Required @Length(min=20,max=999999)'></textarea>
                             <span class="empty-message">*Esta informacion es requerida.</span>
                             <span class="error-message">*The message is too short.</span>
@@ -94,7 +96,7 @@
                       <!-- <label class="recaptcha"><span class="empty-message">*Esta informacion es requerida.</span></label> -->
                       <div class="contact-form-buttons">
                         <button href="#" data-type="reset" class="btn btn-success">Limpiar</button>
-                        <button href="#" data-type="submit" class="btn btn-success m-3">Enviar</button>
+                        <button href="#" data-type="submit" class="btn btn-success m-3" id="enviar">Enviar</button>
                       </div>
                     </fieldset>
                     <div class="modal fade response-message">
@@ -119,7 +121,192 @@
     </div>
 
 
-
+      <!-- Footer -->
+      <footer class="bg-secondary text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+      
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+      
+          <!-- Section: Form -->
+          <section class="">
+            <form action="">
+              <!--Grid row-->
+              <div class="row d-flex justify-content-center">
+                <!--Grid column-->
+                <div class="col-auto">
+                  <p class="pt-2">
+                    <strong>Suscríbete a nuestro boletín</strong>
+                  </p>
+                </div>
+                <!--Grid column-->
+      
+                <!--Grid column-->
+                <div class="col-md-5 col-12">
+                  <!-- Email input -->
+                  <div class="form-outline form-white mb-4">
+                    <input type="email" id="form5Example21" class="form-control" />
+                    <label class="form-label" for="form5Example21">Dirección de Email</label>
+                  </div>
+                </div>
+                <!--Grid column-->
+      
+                <!--Grid column-->
+                <div class="col-auto">
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-outline-light mb-4">
+                    Suscribete
+                  </button>
+                </div>
+                <!--Grid column-->
+              </div>
+              <!--Grid row-->
+            </form>
+          </section>
+          <!-- Section: Form -->
+      
+          <!-- Section: Text -->
+          <section class="mb-4">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+              repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+              eum harum corrupti dicta, aliquam sequi voluptate quas.
+            </p>
+          </section>
+          <!-- Section: Text -->
+      
+          <!-- Section: Links -->
+          <section class="">
+            <!--Grid row-->
+            <div class="row">
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Nosotros</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#!" class="text-white">Galeria</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Historia</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Eventos</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Actividades</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Secciones</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#!" class="text-white">Nosostros</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Galeria</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Carta</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Contacto</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Redes Sociales</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#!" class="text-white">Facebook</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Instagram</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Linkedin</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Medios de Pago</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#!" class="text-white">Tarjetas de Credito</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Mercado Pago</a>
+                  </li>
+                  <li>
+                    <a href="#!" class="text-white">Modo</a>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+            </div>
+            <!--Grid row-->
+          </section>
+          <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-white" href="https://mdbootstrap.com/">Sebastian Delgado</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
     <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/contacto.js"></script>
+    <script src="../js/sweetAlert.js"></script>
 </body>
 </html>
